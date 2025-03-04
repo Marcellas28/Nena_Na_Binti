@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nena Na Binti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2e3192;
+            --primary-dark: #1a1b5d;
+            --secondary: #ff0000;
+            --light: #ffffff;
+            --dark: #1a1b2f;
+            --gray: #757575;
+            --success: #4caf50;
+            --border: #e0e0e0;
+            --warning: #ff9800;
+        }
+       
+
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.05px 0;
+        }
+ 
+        .logo-container {
+    display: flex;
+    align-items: center; /* Align items vertically center */
+}
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+        
+        }
+        .logo2{
+            border-radius: 50%;
+            width:70;
+            height:70;
+            display: flex;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, #2e3192 0%, #ff0000 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background-color: #e60000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+
+        /* Topics Section */
+        .topics {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .topic-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .topic-questions {
+            margin: 20px 0;
+        }
+
+        .question-item {
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .question-header {
+            padding: 15px;
+            background-color: var(--light);
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .question-header::after {
+            content: '+';
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .question-item.active .question-header::after {
+            content: '-';
+        }
+
+        .question-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .question-item.active .question-content {
+            padding: 15px;
+            max-height: 500px;
+        }
+
+        .question-content ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .question-content li {
+            margin-bottom: 5px;
+        }
+
+
+        /* Resources Section */
+        .resources {
+            padding: 80px 0;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .resource-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            background: var(--light);
+            transition: transform 0.3s;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .resource-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        /* Chat Section */
+        .chat-section {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
+        .chat-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .chat-messages {
+            height: 400px;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            max-width: 70%;
+        }
+
+        .message.user {
+            background: var(--primary);
+            color: white;
+            margin-left: auto;
+        }
+
+        .message.specialist {
+            background: white;
+            border: 1px solid var(--border);
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 20px;
+            gap: 10px;
+            background: white;
+            border-top: 1px solid var(--border);
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        /* Consultation Form */
+        .consultation-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 1000px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .privacy-notice {
+            text-align: center;
+            padding: 20px;
+            background: var(--primary);
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .consultation-form {
+                padding: 20px;
+            }
+        }
+
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .chat-widget-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .chat-widget-button:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-popup {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        .chat-popup.active {
+            display: block;
+        }
+
+        .chat-header {
+            padding: 15px;
+            background: var(--primary);
+            color: white;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* Anonymous Mode Toggle */
+        .anonymous-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: var(--light);
+            border-radius: 5px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+        
+    /* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Container for the elementor widget */
+.elementor-widget-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-left: 6px solid #2d2f91;
+}
+
+.elementor-widget-container:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Paragraph styles */
+.elementor-widget-container p {
+    margin-bottom: 1em;
+    color: #444;
+}
+
+/* Highlighting important text */
+.elementor-widget-container p:first-child {
+    font-weight: bold;
+    color: #fe575c; /* Accent color */
+}
+
+/* Emphasize the term 'NENA NA BINTI' */
+.elementor-widget-container p:nth-child(2) {
+    font-style: italic;
+    color: #2d2f91; /* A slightly different accent color for variation */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .elementor-widget-container {
+        margin: 10px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .elementor-widget-container {
+        padding: 10px;
+    }
+}
+
+        /* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Container for the 'why-us' class */
+.why-us {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-left: 6px solid #2d2f91;
+}
+
+.why-us:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Paragraph styles */
+.why-us p {
+    margin-bottom: 1em;
+    color: #444;
+}
+
+/* Highlighting important text */
+.why-us p:first-child {
+    font-weight: bold;
+    color: #007aff; /* Accent color */
+}
+
+/* Emphasize key statistics */
+.why-us p:nth-child(2),
+.why-us p:nth-child(3) {
+    font-style: italic;
+    color: #2d2f91; /* A slightly different accent color for variation */
+}
+
+/* Emphasize SGBV section */
+.why-us p:nth-child(4) {
+    background-color: #fe575c;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .why-us {
+        margin: 10px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .why-us {
+        padding: 10px;
+    }
+}
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.textbox-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+   /** background-image: url(days.png);**/
+    background-image: url(binti.png);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 40px;
+   
+}
+
+.textbox-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 4px solid transparent;
+    border-top: 4px solid #2d2f91;
+    border-right: 4px solid #007aff;
+    border-bottom: 4px solid #fe575c;
+    border-left: 4px solid #2d2f91;
+    border-radius: 8px;
+    animation: animate-border 3s linear infinite;
+}
+
+@keyframes animate-border {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.textbox-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #2d2f91, #007aff, #fe575c, #2d2f91);
+    background-size: 400% 400%;
+    z-index: -1;
+    animation: animate-bg 10s ease infinite;
+}
+
+@keyframes animate-bg {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.textbox-container p {
+    margin-bottom: 10px;
+    color: #ffffff; /* Accent color */
+    font-weight: bold;
+    z-index: 1;
+    position: relative;
+    display: flex;
+}
+
+.textbox {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    background-color: #f0f8ff; /* Light background for the text area */
+    transition: border-color 0.3s ease;
+    z-index: 1;
+    position: relative;
+}
+
+.textbox:focus {
+    border-color: #007aff; /* Accent color on focus */
+    outline: none;
+    background-color: #e6f7ff; /* Lighter background on focus */
+}
+
+.textbox-container:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .textbox-container {
+        margin: 10px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .textbox-container {
+        padding: 10px;
+    }
+}
+
+        .contain {
+  text-align: center;
+  padding: 2rem;
+}
+
+h1 {
+  margin-bottom: 2rem;
+  color: #333;
+  font-size: 2rem;
+}
+
+.social-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.social-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Platform-specific colors */
+.tiktok {
+  background-color: #000000;
+}
+
+.facebook {
+  background-color: #1877F2;
+}
+
+.youtube {
+  background-color: #FF0000;
+}
+
+.whatsapp {
+  background-color: #25D366;
+}
+
+.linkedin {
+  background-color: #0A66C2;
+}
+
+.twitter {
+  background-color: #1DA1F2;
+}
+
+.instagram {
+  background: linear-gradient(45deg, #833AB4, #FD1D1D, #FCAF45);
+}
+
+.email {
+  background-color: #555;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .social-icons {
+    gap: 0.75rem;
+  }
+  
+  .social-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+       .fancy-button {
+            position: relative;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1;
+            overflow: hidden;
+            outline: none;
+            animation: gradientBG 10s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .fancy-button::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            z-index: -1;
+            background: linear-gradient(315deg, #ffbc00, #ff0058, #0085ff, #00ff85);
+            background-size: 400% 400%;
+            border-radius: 50px;
+            animation: borderAnimation 3s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes borderAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .fancy-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -2;
+            background: linear-gradient(315deg, #ffbc00, #ff0058, #0085ff, #00ff85);
+            background-size: 400% 400%;
+            border-radius: 50px;
+            animation: pulseAnimation 2s ease-out infinite;
+        }
+
+        @keyframes pulseAnimation {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .fancy-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .fancy-button:hover::before {
+            animation: borderAnimation 1.5s linear infinite;
+        }
+
+        .fancy-button span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .fancy-button .shine {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: all 0.5s ease;
+            z-index: 1;
+        }
+
+        .fancy-button:hover .shine {
+            left: 100%;
+        } 
+       /** .Binti2{
+           /**
+            width: 100%;
+            height: auto;
+            display: block;**/
+            
+          /**  display: flex;
+            top: 30px;
+            right: 30px;
+            width: 320px; /* Small video width */
+        /**    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 100;
+            background: #000;
+        }**/
+        
+        .video-outer-container {
+            /**position: fixed;**/
+            display: flex;
+            top: 30px;
+            right: 30px;
+            width: 350px; /* Slightly wider to accommodate the border */
+            z-index: 100;
+            padding: 15px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            border: 4px solid #ff7e5f;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 126, 95, 0.5);
+            animation: borderGlow 8s infinite linear;
+            overflow: hidden;
+        }
+
+        /* Decorative corners */
+        .video-outer-container::before,
+        .video-outer-container::after,
+        .video-inner-container::before,
+        .video-inner-container::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #fff;
+            z-index: 101;
+        }
+
+        .video-outer-container::before {
+            top: 5px;
+            left: 5px;
+            border-right: none;
+            border-bottom: none;
+            border-radius: 5px 0 0 0;
+        }
+
+        .video-outer-container::after {
+            top: 5px;
+            right: 5px;
+            border-left: none;
+            border-bottom: none;
+            border-radius: 0 5px 0 0;
+        }
+
+        .video-inner-container::before {
+            bottom: 5px;
+            left: 5px;
+            border-right: none;
+            border-top: none;
+            border-radius: 0 0 0 5px;
+        }
+
+        .video-inner-container::after {
+            bottom: 5px;
+            right: 5px;
+            border-left: none;
+            border-top: none;
+            border-radius: 0 0 5px 0;
+        }
+
+        /* Spinning corner decorations */
+        .corner-decoration {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: cornerRotate 10s infinite linear;
+        }
+
+        .top-left {
+            top: 0;
+            left: 0;
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+        }
+
+        .top-right {
+            top: 0;
+            right: 0;
+            border-bottom-color: transparent;
+            border-right-color: transparent;
+        }
+
+        .bottom-left {
+            bottom: 0;
+            left: 0;
+            border-top-color: transparent;
+            border-left-color: transparent;
+        }
+
+        .bottom-right {
+            bottom: 0;
+            right: 0;
+            border-top-color: transparent;
+            border-right-color: transparent;
+        }
+
+        /* Video inner container */
+        .video-inner-container {
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* Video title bar */
+        .video-title-bar {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: white;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Video element styles */
+        .video-player {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 0 0 6px 6px;
+        }
+
+        /* Custom video controls area */
+        .video-controls-area {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            height: 40px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 0 0 6px 6px;
+        }
+
+        .video-inner-container:hover .video-controls-area {
+            opacity: 1;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .video-outer-container {
+                width: 280px;
+                top: 20px;
+                right: 20px;
+                padding: 10px;
+            }
+
+            p {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .video-outer-container {
+                position: relative;
+                width: 100%;
+                top: auto;
+                right: auto;
+                margin-bottom: 20px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+   
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo-container">
+                <img src = "binti.png" class ="logo2">
+               <span><a href="#" class="logo">Nena Na Binti</a></span>
+                </div>
+                <button class="mobile-menu-btn">☰</button>
+                <ul class="nav-links">
+                    <li><a href="#topics">Health Topics</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#consultation">Consultation</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1> <b>Your Confidential<br>Non-Judgemental<br> SRHR support.</b></h1>
+            <p>Access reliable information, resources, and professional consultation for your reproductive health needs. All conversations are private and secure.</p>
+            <div class="hero-buttons">
+                <a href="#about" class="btn btn-outline">About Us</a><br>...<br>
+                <button class="fancy-button">
+        <a href="https://www.rhnk.org/" target="_blank"><span>RHNK Website</span></a>
+        <div class="shine"></div>
+    </button>
+            </div>
+        </div>
+        <div class="video-outer-container">
+        <!-- Decorative corner elements -->
+        <div class="corner-decoration top-left"></div>
+        <div class="corner-decoration top-right"></div>
+        <div class="corner-decoration bottom-left"></div>
+        <div class="corner-decoration bottom-right"></div>
+        <div class="video-inner-container">
+            <video class="video-player" loop controls preload="metadata" poster="/placeholder.svg?height=180&width=320">
+                <source src="nena2.mp4" type="video/webm">
+            </video>
+            <div class="video-controls-area"></div>
+        </div>
+    </div>
+    </section>
+    <section class="topics" id="topics">
+         <div class="elementor-widget-container" id="about">
+        <h2>About Us..</h2>
+    <p>#NenaNaBinti hotlines seek to ensure uninterrupted access to comprehensive SRHR information and services by adolescent girls, young women, young people, key populations (LGBTQ+ persons ) free of stigma and discriminations.</p><p><br />‘NENA NA BINTI’, which is a Swahili term for “talk to a girl”. Meaning we offer a safe space for girls and women to access lifesaving SRHR information and services wherever they are.</p>								</div>
+	<div>
+    </div>
+        <div class="container">
+            <div class="section-title">
+                <h2>Reproductive Health Topics</h2>
+                <p>Comprehensive information on various aspects of reproductive health</p>
+            </div>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <h3>Sexual Health</h3>
+                    <p>Information about STIs, prevention, testing, and treatment options. Learn about safe practices and maintaining sexual health.</p>
+                    <div class="topic-questions">
+                        <div class="question-item">
+                            <div class="question-header">What are common STIs and their symptoms?</div>
+                            <div class="question-content">
+                                <p>Common STIs include:</p>
+                                <ul>
+                                    <li>Chlamydia - Often asymptomatic, may cause discharge</li>
+                                    <li>Gonorrhea - May cause discharge, burning sensation</li>
+                                    <li>HPV - Can cause warts, often no symptoms</li>
+                                    <li>Herpes - Causes sores or blisters</li>
+                                </ul>
+                                <p>Regular testing is important as many STIs show no symptoms.</p>
+                            </div>
+                        </div>
+                        <div class="question-item">
+                            <div class="question-header">How often should I get tested?</div>
+                            <div class="question-content">
+                                <p>Testing frequency depends on your sexual activity:</p>
+                                <ul>
+                                    <li>Annually if sexually active</li>
+                                    <li>Every 3-6 months if multiple partners</li>
+                                    <li>After each new sexual partner</li>
+                                    <li>Immediately if experiencing symptoms</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+
+                <div class="topic-card">
+                    <h3>Family Planning</h3>
+                    <p>Explore different contraception methods, fertility awareness, and family planning resources.</p>
+                    <div class="topic-questions">
+                        <div class="question-item">
+                            <div class="question-header">What contraception options are available?</div>
+                            <div class="question-content">
+                                <p>Available contraception methods include:</p>
+                                <ul>
+                                    <li>Hormonal (pills, patches, injections)</li>
+                                    <li>Long-acting reversible (IUD, implants)</li>
+                                    <li>Barrier methods (condoms, diaphragms)</li>
+                                    <li>Natural family planning methods</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="question-item">
+                            <div class="question-header">How effective are different methods?</div>
+                            <div class="question-content">
+                                <p>Effectiveness rates:</p>
+                                <ul>
+                                    <li>IUD/Implants: 99%+ effective</li>
+                                    <li>Birth Control Pills: 91-99% effective</li>
+                                    <li>Condoms: 85-98% effective</li>
+                                    <li>Natural Methods: 76-88% effective</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+
+                <div class="topic-card">
+                    <h3>Pregnancy</h3>
+                    <p>Information about conception, pregnancy health, prenatal care, and pregnancy options.</p>
+                    <div class="topic-questions">
+                        <div class="question-item">
+                            <div class="question-header">What are early pregnancy symptoms?</div>
+                            <div class="question-content">
+                                <ul>
+                                    <li>Missed period</li>
+                                    <li>Morning sickness</li>
+                                    <li>Breast tenderness</li>
+                                    <li>Fatigue</li>
+                                    <li>Frequent urination</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="question-item">
+                            <div class="question-header">When should I start prenatal care?</div>
+                            <div class="question-content">
+                                <p>Prenatal care should begin:</p>
+                                <ul>
+                                    <li>As soon as pregnancy is confirmed</li>
+                                    <li>Ideally within first 8 weeks</li>
+                                    <li>Even before conception for pre-pregnancy planning</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+
+                <div class="topic-card">
+                    <h3>Reproductive Health Conditions</h3>
+                    <p>Learn about common conditions, symptoms, treatments, and when to seek medical help.</p>
+                    <div class="topic-questions">
+                        <div class="question-item">
+                            <div class="question-header">What are common reproductive health conditions?</div>
+                            <div class="question-content">
+                                <ul>
+                                    <li>PCOS (Polycystic Ovary Syndrome)</li>
+                                    <li>Endometriosis</li>
+                                    <li>Fibroids</li>
+                                    <li>Fertility Issues</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="question-item">
+                            <div class="question-header">When should I see a doctor?</div>
+                            <div class="question-content">
+                                <p>Seek medical attention if you experience:</p>
+                                <ul>
+                                    <li>Unusual bleeding or discharge</li>
+                                    <li>Severe pelvic pain</li>
+                                    <li>Irregular periods</li>
+                                    <li>Fertility concerns</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+
+                <div class="topic-card">
+                    <h3>Mental Health</h3>
+                    <p>Support for mental health concerns related to reproductive health, relationships, and sexuality.</p>
+                    <div class="topic-questions">
+                        <div class="question-item">
+                            <div class="question-header">How does reproductive health affect mental health?</div>
+                            <div class="question-content">
+                                <p>Common connections include:</p>
+                                <ul>
+                                    <li>Hormonal changes affecting mood</li>
+                                    <li>Pregnancy-related anxiety/depression</li>
+                                    <li>Body image concerns</li>
+                                    <li>Relationship stress</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="question-item">
+                            <div class="question-header">Where can I find support?</div>
+                            <div class="question-content">
+                                <p>Support options include:</p>
+                                <ul>
+                                    <li>Professional counseling</li>
+                                    <li>Support groups</li>
+                                    <li>Online resources</li>
+                                    <li>Crisis hotlines</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+
+                <div class="topic-card">
+                    <h3>LGBTQ+ Health</h3>
+                    <p>Specialized information and resources for LGBTQ+ reproductive and sexual health needs.</p>
+                    <div class="topic-questions">
+                        <div class="question-item">
+                            <div class="question-header">What specialized care is available?</div>
+                            <div class="question-content">
+                                <ul>
+                                    <li>LGBTQ+ friendly healthcare providers</li>
+                                    <li>Gender-affirming care</li>
+                                    <li>Specialized sexual health services</li>
+                                    <li>Mental health support</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="question-item">
+                            <div class="question-header">How do I find LGBTQ+ friendly providers?</div>
+                            <div class="question-content">
+                                <p>Resources for finding providers:</p>
+                                <ul>
+                                    <li>LGBTQ+ healthcare directories</li>
+                                    <li>Community referrals</li>
+                                    <li>LGBTQ+ health centers</li>
+                                    <li>Online provider databases</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources" id="resources">
+        <div class="container">
+            <div class="section-title">
+                <h2>Helpful Resources</h2>
+                <p>Access tools and information to support your reproductive health journey</p>
+            </div>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">📚</div>
+                    <h3>Educational Materials</h3>
+                    <p>Download guides, factsheets, and educational resources.</p>
+                </div>
+                <div class="resource-card">
+                    <div  class="resource-icon">🏥</div>
+                      <a href="clinic.html"><h3>Find a Clinic</h3></a>
+                    <p>Locate reproductive health clinics and services near you.</p>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">📱</div>
+                    <h3>Health Tools</h3>
+                    <p>Track your reproductive health with our online tools.</p>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">💬</div>
+                    <h3>Support Groups</h3>
+                    <p>Connect with others in moderated support groups.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+  <!--  <div class="elementor-widget-container" id="about">
+        <h2>About Us..</h2>
+    <p>#NenaNaBinti hotlines seek to ensure uninterrupted access to comprehensive SRHR information and services by adolescent girls, young women, young people, key populations (LGBTQ+ persons ) free of stigma and discriminations.</p><p><br />‘NENA NA BINTI’, which is a Swahili term for “talk to a girl”. Meaning we offer a safe space for girls and women to access lifesaving SRHR information and services wherever they are.</p>								</div>
+	<div>
+    </div>
+    -->
+    <hr>
+    <!-- HTML -->
+<div class="textbox-container">
+    <span><a href="tel:0800211227">Talk To Us <b>Toll Free.</b></a>  </span> <span><a href="mailto:hello@nenanabinti.org" >Email Us.</a> </span><!-- <span><img src="days.png" class="logo"></span>--> <span>  <p>MONDAY TO SUNDAY</p> </span><span><p><b>24/7</b></p></span>
+</div>
+<hr>
+    
+    <div class="why-us">
+        <h2>Why Us..</h2>
+     <p>The 2014 Kenya Demographic and Health Survey (KDHS) found that on average half of men and women start engaging in sex at age 17 and 18, respectively.</p><p>In addition, 11% of girls and 20% of boys aged 15-19 start engaging in sex by age 15. One in five (23%) girls age 15-19 has an unmet need for contraceptives. Consequently, 1 in 5 girls aged 15-19 has begun childbearing and about half (47%) of these births are unwanted. The STI prevalence among girls aged 15-19 is 3 times the rate in boys of the same age group. Knowledge of comprehensive HIV prevention, HIV testing, and condom use are also low among adolescents relative to other age groups. </p><p>Sexual and gender-based violence (SGBV) SGBV is linked to high rates of unintended pregnancy, STIs including HIV, and psychosocial problems. The 2014 KDHS found that 6.5% of girls aged 15-19 and 2.7% of boys aged 15-19 have ever experienced sexual violence. Whereas, 32% of girls aged 15-19 and 42% of boys have ever experienced physical violence since age 15 years.</p><p>Every day in Kenya 7 women die from unsafe abortions which can be prevented. Unsafe abortion in Kenya is among the highest in Africa. Maternal mortality is high at about 6,000 deaths per year, 17% of them from complications of unsafe abortion<br />Therefore, the hotline seeks to create a safe space where adolescent girls and young women can have uninterrupted access to comprehensive SRHR information and services in a confidential and non-judgmental including access to safe abortion services.</p>								</div>
+	<div>			
+    </div>
+    <section class="consultation" id="consultation">
+        <div class="container">
+            <div class="section-title">
+                <h2>Speak with a Specialist</h2>
+                <p>Schedule a confidential consultation with our reproductive health specialists</p>
+            </div>
+            <div class="consultation-form">
+                <div class="anonymous-toggle">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="anonymous-mode">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span>Anonymous Mode</span>
+                </div>
+                <form id="consultationForm">
+                    <div class="form-group">
+                        <label for="name">Name (Optional in Anonymous Mode)</label>
+                        <input type="text" id="name" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age Range</label>
+                        <select id="age" name="age" required>
+                            <option value="">Select Age Range</option>
+                            <option value="under18">Under 18</option>
+                            <option value="18-24">18-24</option>
+                            <option value="25-34">25-34</option>
+                            <option value="35-44">35-44</option>
+                            <option value="45+">45+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="topic">Topic</label>
+                        <select id="topic" name="topic" required>
+                            <option value="">Select Topic</option>
+                            <option value="sexual-health">Sexual Health</option>
+                            <option value="family-planning">Family Planning</option>
+                            <option value="pregnancy">Pregnancy</option>
+                            <option value="reproductive-health">Reproductive Health</option>
+                            <option value="mental-health">Mental Health</option>
+                            <option value="lgbtq">LGBTQ+ Health</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Question or Concern</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-method">Preferred Contact Method</label>
+                        <select id="contact-method" name="contact-method" required>
+                            <option value="">Select Contact Method</option>
+                            <option value="chat">Secure Chat</option>
+                            <option value="video">Video Call</option>
+                            <option value="email">Secure Email</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Request Consultation</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about reproductive health</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">How confidential are the consultations?</div>
+                    <div class="faq-answer">
+                        <p>All consultations are completely confidential. We use secure, encrypted communications and follow strict privacy protocols. You can choose to remain anonymous, and no information is shared without your explicit consent.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What qualifications do your specialists have?</div>
+                    <div class="faq-answer">
+                        <p>Our specialists are licensed healthcare professionals with specific training in reproductive health. They include gynecologists, reproductive health nurses, certified counselors, and sexual health educators.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How quickly can I speak with a specialist?</div>
+                    <div class="faq-answer">
+                        <p>We typically respond to consultation requests within 24 hours. For urgent matters, our chat service is available during business hours for immediate support. Emergency services are available 24/7 through our partner clinics.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is there a cost for consultations?</div>
+                    <div class="faq-answer">
+                        <p>Basic information and resources are free. Consultation fees vary based on the type and duration of service. We offer sliding scale fees and can provide information about insurance coverage and financial assistance programs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        
+        <script>window.PICKAXE=window.PICKAXE||{pickaxes:[],style:"kHsjoCQGgI0GWASmgIdIAxiDA6wgM6CMbgC4UgDDAXYEAvDIBoGEBgG4CAWQIGYBgwCqApdoEjggjIaCcCoCA9gVAaAnBYBkqgBkKBwWoARYgJhrAFwqAFQEAHkIAXAQAASgbCfAhqSAAAsDMAYEc+QJckgGXFAhUGBQ30DEcIGo0wBBdgS5VAcAaBVk8BA3YFgaQCZUgVkpAACKAAOUBAYICF7QBJcgBREA7ICKak6AFGKACRmANLCAWEKAIgyAAAiACEoA+oB6QADwgBxIgBEhgAkkgGkqgCEuAG6AQTaAQTyAJUWAVrCAQVGAQhaAEHyAKXyAgy0AaoA7dIBDP4CBR4AJhYBAGICISYCRjYCVZ4CaI4B5OYB/o4BTg4BVq4CzWoBlj4BtaYDBNYB9oYCpS4AqL4CsTIBIDYAUDIDjVoAAz4CK4oCIZIDiw4AEQgBbALqAxECAYwiAIKCAAoSA8guAQCiARZDAAqFgFGDgBIgFQUwAGIQApQAXR4AAMUAoUCAOGhAELmsUAQXqAFGRAGcqgEGhQBDi4AEiEAzFyAQJRAMejgDzIQCeSoBkpkACDKAABNAOU2gFQ0QBikIARYcALcaANJ3ABSAgAn8wAIJYAWysAATOARNBAMFZgANgQBMFoAJOcAGniAU+rAKpJgFYCQA1DoA3LUABoKADQ1ADxQgFAWQDfj4AAFEAeEaAT3nAIhhgADBAAhgDuPwAUAYBdlsADLWAaGBALhegHYGQBQhoABoEABIaAQl3ACcNgECDQCNYoBBE8A/AqABDVAAEmgEZAQAyYIAITEAPoGAYTG0IA74EA4vOAVqLAMqagDxfQBfroAuF8AGdyATULAJKKgGe1wBgM4BEwsAGKyAEMdALKPgEFjQCNR4BRCMAmECAdXBAJR1gFcDQBANIAEHsAqDSAeAhAIvhgB+NwDsjoA5d0AMOaAHRvAA5/gBAnwDq9YAIYEAldyACCXAAJigBrAQBrFoBFckA+CCARBQnEAZZdADiBQBJUsATI1AFnKQAFwUAMBDAAWQQABFEAAINAEANQB0h0AQIvAFOrQARTgAACAA="},window.PICKAXE.pickaxes.push({id:"Reproductive_Health_8JSB4",type:"fab"});const{id:_fid}=window.PICKAXE.pickaxes[0];fetch(`https://embed.pickaxeproject.com/axe/api/script/${_fid}`).then((e=>e.json())).then((({v:e})=>{const t=`https://cdn.jsdelivr.net/gh/pickaxeproject/cdn@${e}/dist`;if(!document.querySelector(`script[src="${t}/bundle.js"]`)){const e=document.createElement("script");e.src=t+"/bundle.js",e.defer=!0,document.head.appendChild(e)}}));</script>
+        
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Nena Na Binti</h3>
+                    <p>Providing confidential reproductive health information and support.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#topics">Health Topics</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                        <li><a href="#consultation">Consultation</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="tel:0800211227">24/7 Crisis Line</a></li>
+                        <li><a href="#">Find a Clinic</a></li>
+                    </ul>
+                </div>
+            
+            <div class="contain">
+    <h1>Connect With Us</h1>
+    
+    <div class="social-icons">
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@nenanabinti" class="social-icon tiktok" target="_blank" aria-label="TikTok">
+        <i class="fab fa-tiktok"></i>
+      </a>
+      
+      <!-- Facebook -->
+      <a href="https://facebook.com/NenaNaBinti/" class="social-icon facebook" target="_blank" aria-label="Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      
+      <!-- YouTube -->
+      <a href="https://youtu.be/7rzHwHeox8I?si=aws5sJ7IX3BYzgcf" target="_blank" class="social-icon youtube" aria-label="YouTube">
+        <i class="fab fa-youtube"></i>
+      </a>
+      
+      <!-- WhatsApp -->
+      <a href="https://wa.me/+254775533117" class="social-icon whatsapp" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      
+      
+      <!-- Twitter -->
+      <a href="https://x.com/NenaNaBinti" class="social-icon twitter" target="_blank" aria-label="Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/nenanabinti?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-icon instagram" target="_blank" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      
+      <!-- Email -->
+      <a href="mailto:hello@nenanabinti.org" class="social-icon email" target="_blank" aria-label="Email">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+  </div>
+                </div>
+            </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                const isActive = item.classList.contains('active');
+                
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+        
+        // Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the form element
+    const consultationForm = document.getElementById('consultationForm');
+    
+    // Add submit event listener to the form
+    consultationForm.addEventListener('submit', function(event) {
+        // Prevent the default form submission
+        event.preventDefault();
+        
+        // Get form values
+        const name = document.getElementById('name').value || 'Anonymous';
+        const ageRange = document.getElementById('age').value;
+        const topic = document.getElementById('topic').value;
+        const message = document.getElementById('message').value;
+        const contactMethod = document.getElementById('contact-method').value;
+        
+        // Get the display text for dropdown selections
+        const ageRangeText = document.getElementById('age').options[document.getElementById('age').selectedIndex].text;
+        const topicText = document.getElementById('topic').options[document.getElementById('topic').selectedIndex].text;
+        const contactMethodText = document.getElementById('contact-method').options[document.getElementById('contact-method').selectedIndex].text;
+        
+        // Format the message for WhatsApp
+        let formattedMessage = 
+            `*New Consultation Request*\n\n` +
+            `*Name:* ${name}\n` +
+            `*Age Range:* ${ageRangeText}\n` +
+            `*Topic:* ${topicText}\n` +
+            `*Preferred Contact:* ${contactMethodText}\n\n` +
+            `*Question/Concern:*\n${message}`;
+        
+        // Encode the message for URL
+        const encodedMessage = encodeURIComponent(formattedMessage);
+        
+        // Create WhatsApp URL with the Kenyan phone number (0712656502)
+        // Convert to international format by replacing the leading 0 with 254
+        const whatsappNumber = '254712656502';
+        const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+        
+        // Redirect to WhatsApp
+        window.open(whatsappURL, '_blank');
+        
+        // Optional: Reset the form after submission
+        consultationForm.reset();
+        
+        // Optional: Show a success message
+        alert('Your consultation request is being redirected to WhatsApp. If it doesn\'t open automatically, please check your popup blocker.');
+    });
+    
+    // Optional: Add validation feedback
+    const requiredFields = consultationForm.querySelectorAll('[required]');
+    requiredFields.forEach(field => {
+        field.addEventListener('invalid', function() {
+            // Add a class for styling invalid fields
+            this.classList.add('invalid-field');
+        });
+        
+        field.addEventListener('input', function() {
+            // Remove the invalid class when user starts typing
+            this.classList.remove('invalid-field');
+        });
+    });
+});
+
+ /* // Chat Widget
+const chatButton = document.querySelector('.chat-widget-button');
+const chatPopup = document.querySelector('.chat-popup');
+const closeChat = document.querySelector('.close-chat');
+const chatInput = document.querySelector('.chat-input input');
+const chatMessages = document.querySelector('.chat-messages');
+const sendButton = document.querySelector('.chat-input .btn');
+
+chatButton.addEventListener('click', () => {
+    chatPopup.classList.add('active');
+});
+
+closeChat.addEventListener('click', () => {
+    chatPopup.classList.remove('active');
+});
+
+// Anonymous Mode Toggle
+const anonymousToggle = document.getElementById('anonymous-mode');
+const nameInput = document.getElementById('name');
+
+anonymousToggle.addEventListener('change', () => {
+    if (anonymousToggle.checked) {
+        nameInput.value = '';
+        nameInput.disabled = true;
+        nameInput.placeholder = 'Anonymous Mode Active';
+    } else {
+        nameInput.disabled = false;
+        nameInput.placeholder = '';
+    }
+});
+
+// Consultation Form
+const consultationForm = document.getElementById('consultationForm');
+
+consultationForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Create success message
+    const successMessage = document.createElement('div');
+    successMessage.style.backgroundColor = 'var(--success)';
+    successMessage.style.color = 'white';
+    successMessage.style.padding = '15px';
+    successMessage.style.borderRadius = '5px';
+    successMessage.style.marginTop = '20px';
+    successMessage.textContent = 'Thank you for your request. A specialist will contact you shortly through your preferred method.';
+    
+    // Clear form and show success message
+    consultationForm.reset();
+    consultationForm.appendChild(successMessage);
+    
+    // Remove success message after 5 seconds
+    setTimeout(() => {
+        successMessage.remove();
+    }, 5000);
+});
+
+// Chat Functionality
+function addMessage(message, isUser = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${isUser ? 'user' : 'specialist'}`;
+    messageDiv.textContent = message;
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function handleMessage() {
+    const message = chatInput.value.trim();
+    if (message) {
+        addMessage(message, true);
+        chatInput.value = '';
+        
+        // Simulate specialist response
+        setTimeout(() => {
+            addMessage('Thank you for reaching out. A specialist will respond to your message shortly. For immediate assistance, please call our 24/7 Toll Free helpline.');
+        }, 1000);
+
+        // Send message to WhatsApp number
+        const whatsappNumber = '+254712656502'; 
+        const whatsappMessage = encodeURIComponent(message);
+        const whatsappURL = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${whatsappMessage}`;
+        window.open(whatsappURL, '_blank');
+    }
+} */
+
+sendButton.addEventListener('click', handleMessage);
+chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        handleMessage();
+    }
+});
+
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Topic Questions Toggle
+        document.querySelectorAll('.question-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all other items in the same topic card
+                const topicCard = item.closest('.topic-card');
+                topicCard.querySelectorAll('.question-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

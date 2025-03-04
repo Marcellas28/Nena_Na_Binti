@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductive Health Clinic Finder</title>
+    <style>
+  /* Base Styles */
+:root {
+  --primary-color: #4f46e5;
+  --primary-dark: #4338ca;
+  --secondary-color: #10b981;
+  --secondary-dark: #059669;
+  --accent-color: #ec4899;
+  --accent-dark: #db2777;
+  --text-color: #1f2937;
+  --light-text: #6b7280;
+  --background-color: #f9fafb;
+  --card-background: #ffffff;
+  --border-color: #e5e7eb;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --gradient-1: #4f46e5;
+  --gradient-2: #3b82f6;
+  --gradient-3: #0ea5e9;
+  --gradient-4: #06b6d4;
+  --gradient-5: #10b981;
+  --gradient-6: #ec4899;
+  --gradient-7: #8b5cf6;
+  --gradient-8: #f59e0b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes rainbowBorder {
+  0% {
+    border-color: var(--gradient-1);
+    box-shadow: 0 0 15px rgba(79, 70, 229, 0.3);
+  }
+  14% {
+    border-color: var(--gradient-2);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+  }
+  28% {
+    border-color: var(--gradient-3);
+    box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
+  }
+  42% {
+    border-color: var(--gradient-4);
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+  }
+  57% {
+    border-color: var(--gradient-5);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+  }
+  71% {
+    border-color: var(--gradient-6);
+    box-shadow: 0 0 15px rgba(236, 72, 153, 0.3);
+  }
+  85% {
+    border-color: var(--gradient-7);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+  }
+  100% {
+    border-color: var(--gradient-1);
+    box-shadow: 0 0 15px rgba(79, 70, 229, 0.3);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(10px) rotate(-1deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(79, 70, 229, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(79, 70, 229, 0.8), 0 0 30px rgba(59, 130, 246, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(79, 70, 229, 0.5);
+  }
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 25%, #dbeafe 50%, #e0e7ff 75%, #ede9fe 100%);
+  background-size: 400% 400%;
+  animation: gradientBackground 15s ease infinite;
+  position: relative;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234f46e5' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: -1;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header Styles */
+header {
+  background: linear-gradient(
+    -45deg,
+    var(--gradient-1),
+    var(--gradient-2),
+    var(--gradient-3),
+    var(--gradient-4),
+    var(--gradient-5),
+    var(--gradient-6),
+    var(--gradient-7)
+  );
+  background-size: 400% 400%;
+  animation: gradientBackground 10s ease infinite;
+  color: white;
+  padding: 2.5rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 5px solid transparent;
+  border-image: linear-gradient(
+    to right,
+    var(--gradient-1),
+    var(--gradient-2),
+    var(--gradient-3),
+    var(--gradient-4),
+    var(--gradient-5),
+    var(--gradient-6),
+    var(--gradient-7)
+  );
+  border-image-slice: 1;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 20%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.2) 0%, transparent 20%);
+  pointer-events: none;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: linear-gradient(0deg, transparent 0%, rgba(255, 255, 255, 0.05) 100%);
+  transform: rotate(30deg);
+  pointer-events: none;
+}
+
+header h1 {
+  margin-bottom: 0.5rem;
+  font-size: 2.8rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 255, 255, 0.2);
+  animation: float 8s ease-in-out infinite;
+  position: relative;
+  display: inline-block;
+}
+
+header h1::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, var(--gradient-6), var(--gradient-7), var(--gradient-8));
+  border-radius: 3px;
+  opacity: 0.8;
+}
+
+header p {
+  font-size: 1.3rem;
+  opacity: 0.95;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Form Styles */
+.search-section {
+  padding: 2.5rem 0;
+}
+
+.search-card {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 1px 5px rgba(0, 0, 0, 0.05), 0 0 0 3px rgba(79, 70, 229, 0.1);
+  padding: 2.5rem;
+  margin-bottom: 2.5rem;
+  border: 3px solid transparent;
+  animation: rainbowBorder 10s infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.search-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  transform: rotate(30deg);
+  pointer-events: none;
+}
+
+.search-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(79, 70, 229, 0.05) 0%,
+    rgba(59, 130, 246, 0.05) 25%,
+    rgba(236, 72, 153, 0.05) 50%,
+    rgba(16, 185, 129, 0.05) 75%,
+    rgba(139, 92, 246, 0.05) 100%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+.search-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15), 0 1px 5px rgba(0, 0, 0, 0.05), 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.search-card h2 {
+  margin-bottom: 1.8rem;
+  color: var(--primary-color);
+  position: relative;
+  display: inline-block;
+  font-size: 1.8rem;
+}
+
+.search-card h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, var(--gradient-1), var(--gradient-6), var(--gradient-7));
+  border-radius: 4px;
+}
+
+.form-group {
+  margin-bottom: 1.8rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 1.05rem;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.2);
+  background-color: white;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px;
+  padding-right: 2.5rem;
+  z-index: 10;
+  position: relative;
+}
+
+select:disabled {
+  background-color: #f3f4f6;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.btn {
+  background: linear-gradient(45deg, var(--gradient-1), var(--gradient-2), var(--gradient-3), var(--gradient-4));
+  background-size: 300% 300%;
+  animation: gradientBackground 5s ease infinite;
+  color: white;
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+  width: 100%;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: 0.5s;
+}
+
+.btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:active {
+  transform: translateY(-2px);
+}
+
+/* Results Styles */
+.results-section {
+  padding: 1rem 0 3.5rem;
+}
+
+.results-section h2 {
+  margin-bottom: 1.8rem;
+  color: var(--primary-color);
+  position: relative;
+  display: inline-block;
+  font-size: 1.8rem;
+}
+
+.results-section h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, var(--gradient-1), var(--gradient-6), var(--gradient-7));
+  border-radius: 4px;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.clinic-card {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08), 0 0 0 2px rgba(79, 70, 229, 0.05);
+  padding: 1.8rem;
+  transition: all 0.4s ease;
+  border: 3px solid transparent;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  backdrop-filter: blur(10px);
+}
+
+.clinic-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(79, 70, 229, 0.05) 0%,
+    rgba(59, 130, 246, 0.05) 25%,
+    rgba(236, 72, 153, 0.05) 50%,
+    rgba(16, 185, 129, 0.05) 75%,
+    rgba(139, 92, 246, 0.05) 100%
+  );
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.clinic-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.clinic-card:hover::before {
+  opacity: 1;
+}
+
+.clinic-card:nth-child(3n + 1) {
+  animation: rainbowBorder 10s infinite 0s;
+}
+
+.clinic-card:nth-child(3n + 2) {
+  animation: rainbowBorder 10s infinite 3.33s;
+}
+
+.clinic-card:nth-child(3n + 3) {
+  animation: rainbowBorder 10s infinite 6.66s;
+}
+
+.clinic-name {
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  margin-bottom: 0.6rem;
+  position: relative;
+  display: inline-block;
+}
+
+.clinic-name::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--gradient-2), var(--gradient-6));
+  transition: width 0.4s ease;
+  border-radius: 3px;
+}
+
+.clinic-card:hover .clinic-name::after {
+  width: 100%;
+}
+
+.clinic-type {
+  display: inline-block;
+  background: linear-gradient(to right, var(--gradient-5), var(--gradient-4));
+  color: white;
+  padding: 0.3rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 3px 8px rgba(16, 185, 129, 0.3);
+  font-weight: 600;
+}
+
+.clinic-info {
+  margin-bottom: 0.7rem;
+  color: var(--light-text);
+  transition: color 0.3s ease;
+  line-height: 1.5;
+}
+
+.clinic-card:hover .clinic-info {
+  color: var(--text-color);
+}
+
+.clinic-info strong {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.clinic-contact {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.contact-btn {
+  flex: 1;
+  text-align: center;
+  padding: 0.7rem;
+  border-radius: 10px;
+  background-color: #f3f4f6;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.contact-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.contact-btn:hover {
+  background: linear-gradient(to right, var(--gradient-1), var(--gradient-2));
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+}
+
+.contact-btn:hover::before {
+  left: 100%;
+}
+
+/* Utility Classes */
+.hidden {
+  display: none;
+}
+
+#loading {
+  text-align: center;
+  padding: 2.5rem;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  position: relative;
+  font-weight: 500;
+}
+
+.ellipsis::after {
+  content: ".";
+  animation: ellipsis 1.5s infinite;
+}
+
+@keyframes ellipsis {
+  0% {
+    content: ".";
+  }
+  33% {
+    content: "..";
+  }
+  66% {
+    content: "...";
+  }
+}
+
+#no-results {
+  text-align: center;
+  padding: 2.5rem;
+  font-size: 1.2rem;
+  color: var(--light-text);
+}
+
+/* Footer Styles */
+footer {
+  background: linear-gradient(-45deg, #1f2937, #111827);
+  color: white;
+  padding: 1.8rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(
+    to right,
+    var(--gradient-1),
+    var(--gradient-2),
+    var(--gradient-3),
+    var(--gradient-4),
+    var(--gradient-5),
+    var(--gradient-6),
+    var(--gradient-7)
+  );
+  animation: gradientBackground 10s ease infinite;
+  background-size: 400% 100%;
+}
+
+footer::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+
+/* Welcome Message Animation */
+.welcome-message {
+  animation: float 8s ease-in-out infinite;
+  text-align: center;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 3px solid transparent;
+  animation: rainbowBorder 10s infinite;
+  backdrop-filter: blur(10px);
+}
+
+.welcome-message h3 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.welcome-message h3::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, var(--gradient-1), var(--gradient-6));
+  border-radius: 3px;
+}
+
+.welcome-message p {
+  margin-bottom: 0.8rem;
+  color: var(--text-color);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2.2rem;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .search-card,
+  .clinic-card {
+    padding: 1.5rem;
+  }
+
+  .btn {
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Additional Decorative Elements */
+.search-card::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, transparent 50%, rgba(79, 70, 229, 0.1) 50%);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.clinic-card::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(45deg, rgba(236, 72, 153, 0.1) 50%, transparent 50%);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+/* Shimmer Effect for Cards */
+.clinic-card:hover::before,
+.search-card:hover::before {
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>REPRODUCTIVE HEALTH CLINICS</h1>
+            <p>Find healthcare facilities near your location</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="search-section">
+            <div class="search-card">
+                <h2>Search for Clinics</h2>
+                <form id="search-form">
+                    <div class="form-group">
+                        <label for="county">County:</label>
+                        <select id="county" name="county" required>
+                            <option value="" disabled selected>Select a county</option>
+                            <!-- Counties will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="subcounty">Sub-County:</label>
+                        <select id="subcounty" name="subcounty" required disabled>
+                            <option value="" disabled selected>Select a county first</option>
+                            <!-- Sub-counties will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Find Clinics</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="results-section" id="results-section">
+            <h2>Clinics Near You</h2>
+            <div id="loading" class="hidden">Searching for clinics<span class="ellipsis"></span></div>
+            <div id="no-results" class="hidden">No clinics found in this area. Try another location.</div>
+            <div id="results-container" class="results-grid"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 REPRODUCTIVE HEALTH NETWORK KENYA. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+  // Counties and subcounties data
+const countiesData = {
+  Nairobi: [
+    "Westlands",
+    "Dagoretti",
+    "Langata",
+    "Kibra",
+    "Roysambu",
+    "Kasarani",
+    "Ruaraka",
+    "Embakasi",
+    "Makadara",
+    "Kamukunji",
+    "Starehe",
+    "Mathare",
+    "Eastleigh",
+  ],
+  Mombasa: ["Nyali", "Kisauni", "Likoni", "Mvita", "Changamwe", "Jomvu"],
+  Kisumu: ["Kisumu Central", "Kisumu East", "Kisumu West", "Seme", "Nyando", "Muhoroni", "Nyakach"],
+  Nakuru: [
+    "Nakuru Town East",
+    "Nakuru Town West",
+    "Naivasha",
+    "Gilgil",
+    "Subukia",
+    "Rongai",
+    "Bahati",
+    "Molo",
+    "Njoro",
+    "Kuresoi",
+  ],
+  Kiambu: [
+    "Thika",
+    "Ruiru",
+    "Juja",
+    "Kiambu Town",
+    "Kikuyu",
+    "Limuru",
+    "Lari",
+    "Gatundu",
+    "Githunguri",
+    "Kabete",
+    "Kiambaa",
+  ],
+  Machakos: ["Machakos Town", "Athi River", "Kathiani", "Kangundo", "Matungulu", "Mwala", "Yatta", "Masinga"],
+  Kakamega: [
+    "Lurambi",
+    "Navakholo",
+    "Malava",
+    "Lugari",
+    "Likuyani",
+    "Butere",
+    "Khwisero",
+    "Shinyalu",
+    "Ikolomani",
+    "Mumias",
+  ],
+}
+
+// Mock database of clinics with coordinates
+const clinicsDatabase = [
+  {
+    id: 1,
+    name: "REHNET MEDICAL",
+    type: "Private Hospital",
+    county: "Nairobi",
+    subcounty: "Embakasi",
+    address: "Kwa ndege, Embakasi, Nairobi",
+    services: ["Reproductive Health Services"],
+    phone: "0800211227",
+    email: "hello@nenanabinti.org",
+    hours: "Mon-Fri: 8am-8pm, Sat-Sun: 9am-5pm",
+    direction:"https://maps.app.goo.gl/ampkqfTPgk5kEFKs5",
+  },
+  {
+    id: 2,
+    name: "Family Care Center",
+    type: "Private Clinic",
+    county: "Nairobi",
+    subcounty: "Westlands",
+    address: "45 Family Road, Westlands",
+    services: ["Family Medicine", "Vaccination", "Laboratory"],
+    phone: "+254-711-234-567",
+    email: "contact@familycarecenter.com",
+    hours: "Mon-Sat: 8am-6pm, Sun: Closed",
+  },
+  {
+    id: 3,
+    name: "Eastside Medical Center",
+    type: "Public Hospital",
+    county: "Nairobi",
+    subcounty: "Eastleigh",
+    address: "78 East Street, Eastleigh",
+    services: ["Emergency Care", "Surgery", "Radiology"],
+    phone: "+254-722-345-678",
+    email: "info@eastsidemedical.com",
+    hours: "24/7",
+  },
+  {
+    id: 4,
+    name: "Community Health Outpost",
+    type: "Community Clinic",
+    county: "Kiambu",
+    subcounty: "Kikuyu",
+    address: "10 Community Lane, Kikuyu",
+    services: ["Primary Care", "Maternal Health", "HIV Testing"],
+    phone: "+254-733-456-789",
+    email: "outreach@communityhealth.org",
+    hours: "Mon-Fri: 9am-5pm, Sat-Sun: Closed",
+  },
+  {
+    id: 5,
+    name: "Sunshine Pediatric Clinic",
+    type: "Specialized Clinic",
+    county: "Kiambu",
+    subcounty: "Thika",
+    address: "22 Children's Way, Thika",
+    services: ["Pediatrics", "Child Immunization", "Growth Monitoring"],
+    phone: "+254-744-567-890",
+    email: "care@sunshinepediatric.com",
+    hours: "Mon-Fri: 8am-6pm, Sat: 9am-1pm, Sun: Closed",
+  },
+  {
+    id: 6,
+    name: "Mombasa General Hospital",
+    type: "Public Hospital",
+    county: "Mombasa",
+    subcounty: "Nyali",
+    address: "100 Coastal Road, Nyali",
+    services: ["General Medicine", "Emergency Care", "Surgery"],
+    phone: "+254-755-678-901",
+    email: "info@mombasageneral.co.ke",
+    hours: "24/7",
+  },
+  {
+    id: 7,
+    name: "Lakeside Health Center",
+    type: "Public Hospital",
+    county: "Kisumu",
+    subcounty: "Kisumu Central",
+    address: "55 Lake Avenue, Kisumu Central",
+    services: ["General Medicine", "Maternal Health", "HIV Care"],
+    phone: "+254-766-789-012",
+    email: "contact@lakesidehealth.co.ke",
+    hours: "Mon-Sun: 8am-8pm",
+  },
+  {
+    id: 8,
+    name: "Highland Medical Clinic",
+    type: "Private Clinic",
+    county: "Nakuru",
+    subcounty: "Nakuru Town East",
+    address: "33 Highland Street, Nakuru Town",
+    services: ["Family Medicine", "Laboratory", "Pharmacy"],
+    phone: "+254-777-890-123",
+    email: "info@highlandmedical.com",
+    hours: "Mon-Sat: 8am-7pm, Sun: 9am-1pm",
+  },
+  {
+    id: 9,
+    name: "Rural Health Initiative",
+    type: "Community Clinic",
+    county: "Machakos",
+    subcounty: "Athi River",
+    address: "5 Rural Road, Athi River",
+    services: ["Primary Care", "Vaccination", "Health Education"],
+    phone: "+254-788-901-234",
+    email: "outreach@ruralhealthinitiative.org",
+    hours: "Mon-Fri: 8am-5pm, Sat-Sun: Closed",
+  },
+  {
+    id: 10,
+    name: "Western Regional Hospital",
+    type: "Public Hospital",
+    county: "Kakamega",
+    subcounty: "Lurambi",
+    address: "200 Western Highway, Lurambi",
+    services: ["General Medicine", "Surgery", "Pediatrics", "Obstetrics"],
+    phone: "+254-799-012-345",
+    email: "info@westernregional.co.ke",
+    hours: "24/7",
+  },
+]
+
+// DOM Elements
+const searchForm = document.getElementById("search-form")
+const resultsContainer = document.getElementById("results-container")
+const loadingElement = document.getElementById("loading")
+const noResultsElement = document.getElementById("no-results")
+const countySelect = document.getElementById("county")
+const subcountySelect = document.getElementById("subcounty")
+
+// Event Listeners
+searchForm.addEventListener("submit", handleSearch)
+countySelect.addEventListener("change", updateSubcounties)
+
+// Initialize county and subcounty dropdowns
+function initializeDropdowns() {
+  // Clear existing options first to prevent duplicates
+  countySelect.innerHTML = '<option value="" disabled selected>Select a county</option>'
+  
+  // Populate counties dropdown
+  for (const county in countiesData) {
+    const option = document.createElement("option")
+    option.value = county
+    option.textContent = county
+    countySelect.appendChild(option)
+  }
+  
+  // Remove the mousedown event handlers that were preventing the dropdown from displaying
+  // Instead, ensure the select elements work properly with standard behavior
+}
+
+// Update subcounties based on selected county
+function updateSubcounties() {
+  const selectedCounty = countySelect.value
+
+  // Clear current options
+  subcountySelect.innerHTML = ""
+
+  // Add default option
+  const defaultOption = document.createElement("option")
+  defaultOption.value = ""
+  defaultOption.textContent = "Select a sub-county"
+  defaultOption.disabled = true
+  defaultOption.selected = true
+  subcountySelect.appendChild(defaultOption)
+
+  if (selectedCounty) {
+    // Enable subcounty select
+    subcountySelect.disabled = false
+
+    // Add subcounties for selected county
+    const subcounties = countiesData[selectedCounty]
+    subcounties.forEach((subcounty) => {
+      const option = document.createElement("option")
+      option.value = subcounty
+      option.textContent = subcounty
+      subcountySelect.appendChild(option)
+    })
+  } else {
+    // Disable subcounty select if no county is selected
+    subcountySelect.disabled = true
+  }
+}
+
+// Handle search form submission
+function handleSearch(event) {
+  event.preventDefault()
+
+  // Get form values
+  const county = countySelect.value
+  const subcounty = subcountySelect.value
+
+  // Show loading state
+  resultsContainer.innerHTML = ""
+  loadingElement.classList.remove("hidden")
+  noResultsElement.classList.add("hidden")
+
+  // Remove welcome message if present
+  const welcomeMessage = document.querySelector(".welcome-message")
+  if (welcomeMessage) {
+    welcomeMessage.remove()
+  }
+
+  // Simulate API call with setTimeout
+  setTimeout(() => {
+    // Find matching clinics
+    const results = findClinics(county, subcounty)
+
+    // Hide loading state
+    loadingElement.classList.add("hidden")
+
+    // Display results
+    if (results.length === 0) {
+      noResultsElement.classList.remove("hidden")
+    } else {
+      displayResults(results)
+    }
+  }, 1000) // Simulate 1 second loading time
+}
+
+// Find clinics by county and subcounty
+function findClinics(county, subcounty) {
+  return clinicsDatabase.filter((clinic) => {
+    return clinic.county === county && clinic.subcounty === subcounty
+  })
+}
+
+// Display results
+function displayResults(clinics) {
+  resultsContainer.innerHTML = ""
+
+  clinics.forEach((clinic) => {
+    const clinicCard = document.createElement("div")
+    clinicCard.className = "clinic-card"
+
+    // Format services list
+    const servicesList = clinic.services.join(", ")
+
+    // Create HTML content
+    let cardContent = `
+      <h3 class="clinic-name">${clinic.name}</h3>
+      <span class="clinic-type">${clinic.type}</span>
+      <p class="clinic-info"><strong>Address:</strong> ${clinic.address}</p>
+      <p class="clinic-info"><strong>Services:</strong> ${servicesList}</p>
+      <p class="clinic-info"><strong>Hours:</strong> ${clinic.hours}</p>
+      <div class="clinic-contact">
+        <a href="tel:${clinic.phone}" class="contact-btn">Call</a>
+        <a href="mailto:${clinic.email}" class="contact-btn">Email</a>
+        <a href="${clinic.direction}" class="contact-btn">Map</a>
+      </div>
+    `
+
+    clinicCard.innerHTML = cardContent
+    resultsContainer.appendChild(clinicCard)
+  })
+}
+
+// Initialize with welcome message on page load
+window.addEventListener("DOMContentLoaded", () => {
+  // Initialize dropdowns
+  initializeDropdowns()
+
+  // Display a welcome message or instructions
+  resultsContainer.innerHTML = `
+    <div class="welcome-message">
+      <h3>Welcome to the Reproductive Health Clinic Finder</h3>
+      <p>Select your county and sub-county to find healthcare facilities in your area.</p>
+      <p>For example, try selecting "Nairobi" and "Embakasi" to find clinics in that area.</p>
+    </div>
+  `
+})
+    </script>
+</body>
+</html>
